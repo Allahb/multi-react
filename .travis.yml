@@ -4,7 +4,8 @@ services:
 
 
 before_install:
-  - docker build -t allahb/react-test -f /path/to/client/Dockerfile.dev /path/to/client
+  - docker build -t allahb/react-test -f Dockerfile.dev ./client
+
 
 
 script:
