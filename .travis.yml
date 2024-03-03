@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t allahb/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run allahb/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t allahb/multi-client ./client
+  - docker build -t allahb/multi-nginx ./nginx
+  - docker build -t allahb/multi-server ./server
+  - docker build -t allahb/multi-worker ./worker
