@@ -14,3 +14,11 @@ after_success:
   - docker build -t allahb/multi-nginx ./nginx
   - docker build -t allahb/multi-server ./server
   - docker build -t allahb/multi-worker ./worker
+  # log into docker cli
+  # iam not going to add plain email and password here i use as encrypted way by using envirnoment variable.
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # now take our images and push them into docker hub
+  - docker push allahb/multi-client
+  - docker push allahb/multi-nginx
+  - docker push allahb/multi-server
+  - docker push allahb/multi-worker
