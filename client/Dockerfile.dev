@@ -1,0 +1,18 @@
+from node:14-alpine
+# Set the working directory
+WORKDIR '/app'
+
+# Copy package.json and package-lock.json files
+COPY ./package.json ./
+COPY ./package-lock.json ./
+
+# Install npm dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Command to run the application
+# now take our images and push them into docker hub
+CMD ["npm", "run", "start"]
+
