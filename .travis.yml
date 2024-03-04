@@ -3,6 +3,8 @@ language: generic
 
 services:
   - docker
+install:
+  - travis_wait 30 mvn install
 
 before_install:
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
